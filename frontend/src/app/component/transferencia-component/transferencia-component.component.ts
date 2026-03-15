@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
+import { TransferenciaService } from '../../service/transferencia-service';
 
 interface Usuario {
   id: number;
@@ -38,7 +39,9 @@ export class TransferenciaComponentComponent implements OnInit {
   ];
   usuarioFiltro: string = '';
 
-  constructor(private fb: FormBuilder) { }
+  beneficios: Beneficio[] = [];
+
+  constructor(private fb: FormBuilder, private transferenciaService: TransferenciaService) { }
 
   ngOnInit(): void {
     this.transferenciaForm = this.fb.group({
@@ -48,24 +51,35 @@ export class TransferenciaComponentComponent implements OnInit {
     });
   }
 
-  realizarTransferencia() {
-    if (this.transferenciaForm.valid) {
-      console.log('Transferência realizada:', this.transferenciaForm.value);
-      alert('Transferência realizada com sucesso!');
-      this.transferenciaForm.reset();
-    }
-  }
-
   get usuariosFiltrados() {
-    return this.usuarios.filter(u => u.nome.toLowerCase().includes(this.usuarioFiltro.toLowerCase()));
+    const valor = this.transferenciaForm?.get('usuarioDestino')?.value?.toLowerCase() || '';
+    return this.usuarios.filter(u => u.nome.toLowerCase().includes(valor));
   }
 
   onSubmit() {
     if (this.transferenciaForm.valid) {
-      const transferenciaData = this.transferenciaForm.value;
-      console.log('Dados da transferência:', transferenciaData);
-      alert('Transferência realizada com sucesso!');
-      this.transferenciaForm.reset();
+      const usuarioDestinoNome = this.transferenciaForm.value.usuarioDestino;
+      const usuarioDestino = this.usuarios.find(u => u.nome === usuarioDestinoNome);
+      if (!usuarioDestino) {
+        alert('Usuário inválido');
+        return;
+      }
+
+      const fromId = 1; // exemplo, você pode pegar do usuário logado
+      const toId = usuarioDestino.id;
+      const amount = this.transferenciaForm.value.valor;
+
+      this.transferenciaService.transfer(fromId, toId, amount)
+        .subscribe({
+          next: (res) => {
+            alert(res); // "Transferência realizada"
+            this.transferenciaForm.reset();
+          },
+          error: (err) => {
+            console.error(err);
+            alert('Erro ao realizar transferência');
+          }
+        });
     }
   }
 }

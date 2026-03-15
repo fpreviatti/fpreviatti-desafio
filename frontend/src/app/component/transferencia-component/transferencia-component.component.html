@@ -9,7 +9,7 @@
       <input type="text"
              matInput
              [matAutocomplete]="auto"
-             formControlName="usuario">
+             formControlName="usuarioDestino">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let user of usuariosFiltrados" [value]="user.nome">
         {{ user.nome }}
