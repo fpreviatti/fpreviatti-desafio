@@ -11,17 +11,15 @@
         </div>
 
         <div class="beneficio-actions">
-        <!-- Botão atualizar (amarelo) -->
+
         <button mat-icon-button (click)="atualizar(b)">
             <mat-icon style="color: #fbc02d;">update</mat-icon>
         </button>
 
-        <!-- Botão deletar (vermelho) -->
         <button mat-icon-button (click)="remover(b.id)">
             <mat-icon style="color: #f44336;">delete</mat-icon>
         </button>
         </div>
-
 
     </div>
     </mat-card>
@@ -49,12 +47,10 @@
             Valor máximo permitido: R$ 999.999.999.999,99
         </mat-error>
 
-        <!-- Mensagem de erro para valor obrigatório -->
         <mat-error *ngIf="beneficioForm.get('valor')?.hasError('required')">
             O valor é obrigatório
         </mat-error>
 
-        <!-- Mensagem de erro para valor mínimo -->
         <mat-error *ngIf="beneficioForm.get('valor')?.hasError('min')">
             O valor deve ser maior que R$ 0,00
         </mat-error>
