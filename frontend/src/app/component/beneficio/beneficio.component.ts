@@ -35,7 +35,7 @@ export class BeneficioComponent {
 
   beneficios: Beneficio[] = [];
   beneficioForm!: FormGroup;
-  beneficioSelecionado: Beneficio | null = null; // <-- para controlar edição
+  beneficioSelecionado: Beneficio | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -58,7 +58,6 @@ export class BeneficioComponent {
       .subscribe(data => this.beneficios = data.filter(b => b.ativo));
   }
 
-  // Ação de clicar no ícone de atualizar
   atualizar(beneficio: Beneficio) {
     this.beneficioSelecionado = beneficio;
     this.beneficioForm.patchValue({
@@ -75,15 +74,13 @@ export class BeneficioComponent {
     const dados: Beneficio = this.beneficioForm.value;
 
     if (this.beneficioSelecionado) {
-      // Atualização
       dados.id = this.beneficioSelecionado.id;
       this.transferenciaService.addBeneficio(dados).subscribe(() => {
         this.carregarBeneficios();
         this.beneficioForm.reset();
-        this.beneficioSelecionado = null; // limpar seleção
+        this.beneficioSelecionado = null;
       });
     } else {
-      // Novo benefício
       this.transferenciaService.addBeneficio(dados).subscribe(() => {
         this.carregarBeneficios();
         this.beneficioForm.reset();

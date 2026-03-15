@@ -3,7 +3,6 @@
 
   <form [formGroup]="transferenciaForm" (ngSubmit)="onSubmit()">
 
-    <!-- Origem -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Origem</mat-label>
       <mat-select formControlName="beneficioOrigemId">
@@ -31,12 +30,10 @@
         Valor máximo permitido: R$ 999.999.999.999,99
       </mat-error>
 
-      <!-- Mensagem de erro para valor obrigatório -->
       <mat-error *ngIf="transferenciaForm.get('valor')?.hasError('required')">
         O valor é obrigatório
       </mat-error>
 
-      <!-- Mensagem de erro para valor mínimo -->
       <mat-error *ngIf="transferenciaForm.get('valor')?.hasError('min')">
         O valor deve ser maior que R$ 0,00
       </mat-error>
