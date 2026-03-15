@@ -5,28 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ad7a241-91e1-4b60-a564-50881b8bbb87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend-module/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/backend-module.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/ejb-module.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ejb-module/src/main/java/com/example/ejb/service/BeneficioEjbService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-module/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-module/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/BeneficioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/src/main/java/com/example/backend/BeneficioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-module/target/backend-module-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/target/backend-module-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-module/target/backend-module-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/target/backend-module-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-module/target/classes/com/example/backend/BeneficioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/target/classes/com/example/backend/BeneficioController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-module/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-module/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend-module/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ejb-module/src/main/java/com/example/ejb/BeneficioEjbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/src/main/java/com/example/ejb/BeneficioEjbService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb-module/src/main/java/com/example/ejb/BeneficioEjbService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb-module/target/classes/com/example/ejb/BeneficioEjbService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/target/classes/com/example/ejb/BeneficioEjbService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb-module/target/ejb-module-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/target/ejb-module-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb-module/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb-module/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb-module/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ejb-module/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,9 +60,11 @@
     "Maven.fpreviatti-desafio [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "feature/backend",
     "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
+    "last_opened_file_path": "E:/Projetos/bip-teste-integrado-fork",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
@@ -69,7 +80,7 @@
       <module name="backend-module" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.backend.*" />
+          <option name="PATTERN" value="com.example.backend.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
