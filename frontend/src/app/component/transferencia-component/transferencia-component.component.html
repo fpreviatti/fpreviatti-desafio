@@ -1,0 +1,43 @@
+<div class="transferencia-container">
+  <h2>Realizar Transferência</h2>
+
+  <form [formGroup]="transferenciaForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Origem</mat-label>
+    <mat-select formControlName="beneficioOrigemId">
+      <mat-option *ngFor="let b of beneficiosParaOrigem" [value]="b.id">
+        {{ b.nome }} (R$ {{ b.valor }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Destinatário -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Destinatário</mat-label>
+    <mat-select formControlName="beneficioDestinoId">
+      <mat-option *ngFor="let b of beneficiosParaDestinatario" [value]="b.id">
+        {{ b.nome }} (R$ {{ b.valor }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Valor da transferência -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Valor</mat-label>
+    <input matInput type="number" formControlName="valor" placeholder="R$ 0,00" step="0.01">
+  </mat-form-field>
+
+    <!-- Descrição opcional -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="descricao" placeholder="Opcional">
+    </mat-form-field>
+
+    <!-- Botão enviar -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="transferenciaForm.invalid">
+      Enviar Transferência
+    </button>
+
+  </form>
+</div>
