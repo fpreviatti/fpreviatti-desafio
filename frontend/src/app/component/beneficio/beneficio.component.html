@@ -7,7 +7,7 @@
         <div class="beneficio-info">
         <strong>{{ b.nome }}</strong>
         <span class="descricao">{{ b.descricao }}</span>
-        <span class="valor">R$ {{ b.valor | number:'1.2-2' }}</span>
+        <span class="valor">{{ b.valor | real }}</span>
         </div>
     </div>
     </mat-card>

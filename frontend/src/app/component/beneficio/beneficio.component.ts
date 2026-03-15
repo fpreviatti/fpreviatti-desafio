@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TransferenciaService } from '../../service/transferencia-service';
 import { Router } from '@angular/router';
+import { RealPipe } from '../../shared/real.pipe';
 
 @Component({
   selector: 'beneficio',
@@ -22,7 +23,8 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    RealPipe
   ]
 })
 export class BeneficioComponent {

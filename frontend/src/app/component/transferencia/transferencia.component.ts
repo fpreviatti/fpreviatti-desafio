@@ -10,6 +10,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { TransferenciaService } from '../../service/transferencia-service';
 import { Router } from '@angular/router';
+import { RealPipe } from '../../shared/real.pipe';
 
 @Component({
   selector: 'transferencia',
@@ -24,7 +25,8 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    RealPipe
   ]
 })
 export class TransferenciaComponent implements OnInit {

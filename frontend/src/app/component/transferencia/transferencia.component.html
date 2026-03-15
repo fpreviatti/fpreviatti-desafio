@@ -3,11 +3,12 @@
 
   <form [formGroup]="transferenciaForm" (ngSubmit)="onSubmit()">
 
+    <!-- Origem -->
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Origem</mat-label>
       <mat-select formControlName="beneficioOrigemId">
         <mat-option *ngFor="let b of beneficiosParaOrigem" [value]="b.id">
-          {{ b.nome }} (R$ {{ b.valor }})
+          {{ b.nome }} ({{ b.valor | real }})
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -16,7 +17,7 @@
       <mat-label>Destinatário</mat-label>
       <mat-select formControlName="beneficioDestinoId">
         <mat-option *ngFor="let b of beneficiosParaDestinatario" [value]="b.id">
-          {{ b.nome }} (R$ {{ b.valor }})
+          {{ b.nome }} ({{ b.valor | real }})
         </mat-option>
       </mat-select>
     </mat-form-field>
