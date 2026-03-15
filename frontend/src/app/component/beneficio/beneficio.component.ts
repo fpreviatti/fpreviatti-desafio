@@ -9,8 +9,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { TransferenciaService } from '../../service/transferencia-service';
 import { Router } from '@angular/router';
 import { RealPipe } from '../../shared/real.pipe';
-import { RealMaskDirective } from '../../shared/realmask-directive';
 import { MatIconModule } from '@angular/material/icon';
+
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'beneficio',
@@ -27,8 +28,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatAutocompleteModule,
     RealPipe,
-    RealMaskDirective,
-    MatIconModule 
+    MatIconModule,
+    NgxCurrencyDirective 
   ]
 })
 export class BeneficioComponent {
@@ -36,6 +37,15 @@ export class BeneficioComponent {
   beneficios: Beneficio[] = [];
   beneficioForm!: FormGroup;
   beneficioSelecionado: Beneficio | null = null;
+
+  currencyOptions = {
+    prefix: 'R$ ',
+    thousands: '.',
+    decimal: ',',
+    align: 'left',
+    allowNegative: false,
+    nullable: false
+  };
 
   constructor(
     private fb: FormBuilder,
