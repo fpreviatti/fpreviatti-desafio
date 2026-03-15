@@ -8,9 +8,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { TransferenciaService } from '../../service/transferencia-service';
 
-interface Usuario {
+interface Beneficio {
   id: number;
   nome: string;
+  descricao: string;
+  valor: number;
+  ativo: boolean;
 }
 
 @Component({
@@ -32,50 +35,52 @@ interface Usuario {
 export class TransferenciaComponentComponent implements OnInit {
 
   transferenciaForm!: FormGroup;
-  usuarios: Usuario[] = [
-    { id: 1, nome: 'João' },
-    { id: 2, nome: 'Maria' },
-    { id: 3, nome: 'Carlos' }
-  ];
-  usuarioFiltro: string = '';
-
   beneficios: Beneficio[] = [];
 
-  constructor(private fb: FormBuilder, private transferenciaService: TransferenciaService) { }
+  constructor(
+    private fb: FormBuilder,
+    private transferenciaService: TransferenciaService
+  ) {}
 
   ngOnInit(): void {
     this.transferenciaForm = this.fb.group({
-      usuarioDestino: [null, Validators.required],
+      beneficioOrigemId: [null, Validators.required], // quem envia
+      beneficioDestinoId: [null, Validators.required], // quem recebe
       valor: [null, [Validators.required, Validators.min(0.01)]],
       descricao: ['']
     });
+
+    this.transferenciaService.getBeneficios()
+      .subscribe(data => this.beneficios = data.filter(b => b.ativo));
   }
 
-  get usuariosFiltrados() {
-    const valor = this.transferenciaForm?.get('usuarioDestino')?.value?.toLowerCase() || '';
-    return this.usuarios.filter(u => u.nome.toLowerCase().includes(valor));
+  get beneficiosParaOrigem() {
+    const destinoId = this.transferenciaForm.get('beneficioDestinoId')?.value;
+    return this.beneficios.filter(b => b.id !== destinoId);
+  }
+
+  get beneficiosParaDestinatario() {
+    const origemId = this.transferenciaForm.get('beneficioOrigemId')?.value;
+    return this.beneficios.filter(b => b.id !== origemId);
   }
 
   onSubmit() {
     if (this.transferenciaForm.valid) {
-      const usuarioDestinoNome = this.transferenciaForm.value.usuarioDestino;
-      const usuarioDestino = this.usuarios.find(u => u.nome === usuarioDestinoNome);
-      if (!usuarioDestino) {
-        alert('Usuário inválido');
-        return;
-      }
-
-      const fromId = 1; // exemplo, você pode pegar do usuário logado
-      const toId = usuarioDestino.id;
+      const fromId = this.transferenciaForm.value.beneficioOrigemId; // remetente
+      const toId = this.transferenciaForm.value.beneficioDestinoId;  // destinatário
       const amount = this.transferenciaForm.value.valor;
 
       this.transferenciaService.transfer(fromId, toId, amount)
         .subscribe({
-          next: (res) => {
+          next: res => {
             alert(res); // "Transferência realizada"
             this.transferenciaForm.reset();
+
+            // ⚡ Atualiza a lista de benefícios após a transferência
+            this.transferenciaService.getBeneficios()
+              .subscribe(data => this.beneficios = data.filter(b => b.ativo));
           },
-          error: (err) => {
+          error: err => {
             console.error(err);
             alert('Erro ao realizar transferência');
           }

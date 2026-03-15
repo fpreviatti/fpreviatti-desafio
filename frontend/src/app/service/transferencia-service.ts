@@ -21,4 +21,8 @@ export class TransferenciaService {
 
     return this.http.post(`${this.baseUrl}/transfer`, null, { responseType: 'text', params });
   }
+
+  getBeneficios(): Observable<Beneficio[]> {
+    return this.http.get<Beneficio[]>(`${this.baseUrl}`); // GET /api/v1/beneficios
+}
 }
