@@ -1,0 +1,10 @@
+# IntelliJ / IDEA
+.idea/
+*.iml
+out/
+
+# VS Code local settings (opcional)
+.vscode/
+
+# Build
+target/
