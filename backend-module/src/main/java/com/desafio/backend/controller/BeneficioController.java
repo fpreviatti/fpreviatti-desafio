@@ -46,4 +46,29 @@ public class BeneficioController {
         return ResponseEntity.ok(beneficios);
     }
 
+    @PostMapping
+    public ResponseEntity<BeneficioDto> addBeneficio(@RequestBody BeneficioDto beneficioDto) {
+        Beneficio beneficio = new Beneficio();
+        beneficio.setNome(beneficioDto.nome());
+        beneficio.setDescricao(beneficioDto.descricao());
+        beneficio.setValor(beneficioDto.valor());
+        beneficio.setAtivo(true);
+        Beneficio salvo = beneficioService.save(beneficio);
+
+        BeneficioDto response = new BeneficioDto(
+                salvo.getId(),
+                salvo.getNome(),
+                salvo.getDescricao(),
+                salvo.getValor(),
+                salvo.getAtivo()
+        );
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBeneficio(@PathVariable Long id) {
+        beneficioService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

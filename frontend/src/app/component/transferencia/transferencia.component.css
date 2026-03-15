@@ -8,6 +8,12 @@
   background-color: #fff;
 }
 
+.buttons-container {
+  display: flex;
+  gap: 10px; /* espaço entre os botões */
+  margin-top: 16px;
+}
+
 .full-width {
   width: 100%;
   margin-bottom: 1rem;

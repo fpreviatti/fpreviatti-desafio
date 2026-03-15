@@ -24,4 +24,12 @@ export class TransferenciaService {
     return this.http.get<Beneficio[]>(`${this.baseUrl}`);
 }
 
+  addBeneficio(beneficio: Beneficio): Observable<Beneficio> {
+    return this.http.post<Beneficio>(`${this.baseUrl}`, beneficio);
+  }
+
+  deleteBeneficio(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
 }

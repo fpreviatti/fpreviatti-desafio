@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { TransferenciaService } from '../../service/transferencia-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'transferencia',
@@ -32,13 +33,14 @@ export class TransferenciaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private transferenciaService: TransferenciaService
+    private transferenciaService: TransferenciaService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.transferenciaForm = this.fb.group({
-      beneficioOrigemId: [null, Validators.required], // quem envia
-      beneficioDestinoId: [null, Validators.required], // quem recebe
+      beneficioOrigemId: [null, Validators.required],
+      beneficioDestinoId: [null, Validators.required],
       valor: [null, [Validators.required, Validators.min(0.01)]],
       descricao: ['']
     });
@@ -57,19 +59,26 @@ export class TransferenciaComponent implements OnInit {
     return this.beneficios.filter(b => b.id !== origemId);
   }
 
+  gerenciarBeneficios() {
+    this.router.navigate(['/beneficio']);
+  }
+
+  removerBeneficio() {
+    this.router.navigate(['/beneficio']);
+  }
+
   onSubmit() {
     if (this.transferenciaForm.valid) {
-      const fromId = this.transferenciaForm.value.beneficioOrigemId; // remetente
-      const toId = this.transferenciaForm.value.beneficioDestinoId;  // destinatário
+      const fromId = this.transferenciaForm.value.beneficioOrigemId;
+      const toId = this.transferenciaForm.value.beneficioDestinoId;
       const amount = this.transferenciaForm.value.valor;
 
       this.transferenciaService.transfer(fromId, toId, amount)
         .subscribe({
           next: res => {
-            alert(res); // "Transferência realizada"
+            alert(res); 
             this.transferenciaForm.reset();
 
-            // ⚡ Atualiza a lista de benefícios após a transferência
             this.transferenciaService.getBeneficios()
               .subscribe(data => this.beneficios = data.filter(b => b.ativo));
           },
