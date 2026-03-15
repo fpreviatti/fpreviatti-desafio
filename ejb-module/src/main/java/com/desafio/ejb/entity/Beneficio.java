@@ -1,4 +1,4 @@
-package com.example.ejb.entity;
+package com.desafio.ejb.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,6 @@
-package com.example.ejb.service;
+package com.desafio.ejb.service;
 
-import com.example.ejb.entity.Beneficio;
+import com.desafio.ejb.entity.Beneficio;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

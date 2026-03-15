@@ -1,6 +1,6 @@
-package com.example.backend.repository;
+package com.desafio.backend.repository;
 
-import com.example.ejb.entity.Beneficio;
+import com.desafio.ejb.entity.Beneficio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

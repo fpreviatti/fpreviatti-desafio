@@ -1,8 +1,9 @@
-package com.example.backend.controller;
+package com.desafio.backend.controller;
 
-import com.example.backend.service.BeneficioService;
+import com.desafio.backend.dto.BeneficioDto;
+import com.desafio.backend.service.BeneficioService;
 
-import com.example.ejb.entity.Beneficio;
+import com.desafio.ejb.entity.Beneficio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,18 @@ public class BeneficioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Beneficio>> getBeneficios() {
-        List<Beneficio> beneficios = beneficioService.findAll();
+    public ResponseEntity<List<BeneficioDto>> getBeneficios() {
+        List<BeneficioDto> beneficios = beneficioService.findAll()
+                .stream()
+                .map(b -> new BeneficioDto(
+                        b.getId(),
+                        b.getNome(),
+                        b.getDescricao(),
+                        b.getValor(),
+                        b.getAtivo()
+                ))
+                .toList();
+
         return ResponseEntity.ok(beneficios);
     }
 

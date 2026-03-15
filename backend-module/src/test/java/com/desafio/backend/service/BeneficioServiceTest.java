@@ -1,8 +1,8 @@
-package com.example.backend.service;
+package com.desafio.backend.service;
 
-import com.example.backend.repository.BeneficioRepository;
-import com.example.ejb.entity.Beneficio;
-import com.example.ejb.service.BeneficioEjbService;
+import com.desafio.backend.repository.BeneficioRepository;
+import com.desafio.ejb.entity.Beneficio;
+import com.desafio.ejb.service.BeneficioEjbService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

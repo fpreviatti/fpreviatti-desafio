@@ -1,15 +1,15 @@
-package com.example.backend.service;
+package com.desafio.backend.service;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import com.desafio.backend.repository.BeneficioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.backend.repository.BeneficioRepository;
-import com.example.ejb.entity.Beneficio;
-import com.example.ejb.service.BeneficioEjbService;
+import com.desafio.ejb.entity.Beneficio;
+import com.desafio.ejb.service.BeneficioEjbService;
 
 @Service
 public class BeneficioService {
