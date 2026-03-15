@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TransferenciaService } from '../../service/transferencia-service';
 import { Router } from '@angular/router';
 import { RealPipe } from '../../shared/real.pipe';
+import { RealMaskDirective } from '../../shared/realmask-directive';
 
 @Component({
   selector: 'beneficio',
@@ -24,7 +25,8 @@ import { RealPipe } from '../../shared/real.pipe';
     MatSelectModule,
     MatButtonModule,
     MatAutocompleteModule,
-    RealPipe
+    RealPipe,
+    RealMaskDirective
   ]
 })
 export class BeneficioComponent {
@@ -43,7 +45,7 @@ export class BeneficioComponent {
 
     this.beneficioForm = this.fb.group({
       nome: ['', Validators.required],
-      valor: [0, [Validators.required, Validators.min(0.01)]],
+      valor: [null, [Validators.required, Validators.min(0.01),Validators.max(999999999999.99) ]],
       descricao: ['']
     });
   }

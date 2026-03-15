@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { TransferenciaService } from '../../service/transferencia-service';
 import { Router } from '@angular/router';
 import { RealPipe } from '../../shared/real.pipe';
+import { RealMaskDirective } from '../../shared/realmask-directive';
 
 @Component({
   selector: 'transferencia',
@@ -26,7 +27,8 @@ import { RealPipe } from '../../shared/real.pipe';
     MatSelectModule,
     MatButtonModule,
     MatAutocompleteModule,
-    RealPipe
+    RealPipe,
+    RealMaskDirective  
   ]
 })
 export class TransferenciaComponent implements OnInit {
@@ -43,7 +45,7 @@ export class TransferenciaComponent implements OnInit {
     this.transferenciaForm = this.fb.group({
       beneficioOrigemId: [null, Validators.required],
       beneficioDestinoId: [null, Validators.required],
-      valor: [null, [Validators.required, Validators.min(0.01)]],
+      valor: [null, [Validators.required, Validators.min(0.01),Validators.max(999999999999.99) ]],
       descricao: ['']
     });
 
