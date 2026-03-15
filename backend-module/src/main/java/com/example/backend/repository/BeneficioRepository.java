@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BeneficioRepository extends JpaRepository<Beneficio, Long> {
-List<Beneficio> findByAtivoTrue();
+    List<Beneficio> findByAtivoTrue();
 }
