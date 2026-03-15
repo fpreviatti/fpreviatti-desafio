@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 import { RealPipe } from '../../shared/real.pipe';
 import { RealMaskDirective } from '../../shared/realmask-directive';
 
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'transferencia',
   standalone: true,
@@ -28,7 +30,8 @@ import { RealMaskDirective } from '../../shared/realmask-directive';
     MatButtonModule,
     MatAutocompleteModule,
     RealPipe,
-    RealMaskDirective  
+    RealMaskDirective,
+    MatIconModule
   ]
 })
 export class TransferenciaComponent implements OnInit {

@@ -10,6 +10,8 @@ import { TransferenciaService } from '../../service/transferencia-service';
 import { Router } from '@angular/router';
 import { RealPipe } from '../../shared/real.pipe';
 import { RealMaskDirective } from '../../shared/realmask-directive';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'beneficio',
@@ -26,7 +28,8 @@ import { RealMaskDirective } from '../../shared/realmask-directive';
     MatButtonModule,
     MatAutocompleteModule,
     RealPipe,
-    RealMaskDirective
+    RealMaskDirective,
+    MatIconModule 
   ]
 })
 export class BeneficioComponent {

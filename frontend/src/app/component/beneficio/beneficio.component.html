@@ -2,13 +2,27 @@
   <h2>Gerenciar Benefícios</h2>
 
   <div class="beneficio-lista">
-    <mat-card *ngFor="let b of beneficios" class="beneficio-card" (click)="remover(b.id)">
+    <mat-card *ngFor="let b of beneficios" class="beneficio-card">
     <div class="beneficio-content">
         <div class="beneficio-info">
         <strong>{{ b.nome }}</strong>
         <span class="descricao">{{ b.descricao }}</span>
         <span class="valor">{{ b.valor | real }}</span>
         </div>
+
+        <div class="beneficio-actions">
+        <!-- Botão atualizar (amarelo) -->
+        <button mat-icon-button (click)="atualizar(b)">
+            <mat-icon style="color: #fbc02d;">update</mat-icon>
+        </button>
+
+        <!-- Botão deletar (vermelho) -->
+        <button mat-icon-button (click)="remover(b.id)">
+            <mat-icon style="color: #f44336;">delete</mat-icon>
+        </button>
+        </div>
+
+
     </div>
     </mat-card>
   </div>
