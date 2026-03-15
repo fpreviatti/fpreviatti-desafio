@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,19 +10,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CommonModule } from '@angular/common';
 import { TransferenciaService } from '../../service/transferencia-service';
 
-interface Beneficio {
-  id: number;
-  nome: string;
-  descricao: string;
-  valor: number;
-  ativo: boolean;
-}
-
 @Component({
-  selector: 'app-transferencia-component',
+  selector: 'transferencia',
   standalone: true,
-  templateUrl: './transferencia-component.component.html',
-  styleUrls: ['./transferencia-component.component.css'],
+  templateUrl: './transferencia.component.html',
+  styleUrl: './transferencia.component.css',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -32,9 +26,8 @@ interface Beneficio {
     MatAutocompleteModule
   ]
 })
-export class TransferenciaComponentComponent implements OnInit {
-
-  transferenciaForm!: FormGroup;
+export class TransferenciaComponent implements OnInit {
+    transferenciaForm!: FormGroup;
   beneficios: Beneficio[] = [];
 
   constructor(

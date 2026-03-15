@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-not-found',
+  template: '', // sem template, só redireciona
+  standalone: true
+})
+export class NotFoundComponent implements OnInit {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // redireciona automaticamente para a rota padrão
+    this.router.navigate(['/transferencia']);
+  }
+}
