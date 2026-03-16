@@ -1,11 +1,14 @@
 package com.desafio.backend.controller;
 
 import com.desafio.backend.dto.BeneficioDto;
+
+import com.desafio.backend.exception.ResourceNotFoundException;
 import com.desafio.backend.service.BeneficioService;
 
 import com.desafio.ejb.entity.Beneficio;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,10 +58,15 @@ public class BeneficioController {
     @Operation(summary = "Atualizar benefício existente")
     public ResponseEntity<BeneficioDto> updateBeneficio(
             @PathVariable Long id,
+            @Valid
             @RequestBody BeneficioDto beneficioDto) {
 
+        System.out.println("Atualizando benefício ID: " + id);
+
         Beneficio existente = beneficioService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Benefício não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Benefício não encontrado"));
+
+        System.out.println("Atualizando benefício ID: " + id);
 
         existente.setNome(beneficioDto.nome());
         existente.setDescricao(beneficioDto.descricao());
@@ -77,11 +85,16 @@ public class BeneficioController {
 
     @PostMapping
     @Operation(summary = "Adicionar benefício ou atualizar se id for fornecido")
-    public ResponseEntity<BeneficioDto> addBeneficio(@RequestBody BeneficioDto beneficioDto) {
-        System.out.println(beneficioDto.id());
-
-        if(beneficioDto.id()!=null){
-            return this.updateBeneficio(beneficioDto.id(), beneficioDto);
+    public ResponseEntity<BeneficioDto> addBeneficio(@Valid @RequestBody BeneficioDto beneficioDto) {
+        if (beneficioDto.id() != null) {
+            var atualizado = beneficioService.update(beneficioDto.id(), beneficioDto);
+            return ResponseEntity.ok(new BeneficioDto(
+                    atualizado.getId(),
+                    atualizado.getNome(),
+                    atualizado.getDescricao(),
+                    atualizado.getValor(),
+                    atualizado.getAtivo()
+            ));
         }
 
         Beneficio beneficio = new Beneficio();

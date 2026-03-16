@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BeneficioRepository extends JpaRepository<Beneficio, Long> {
-    List<Beneficio> findByAtivoTrue();
-}
+public interface BeneficioRepository extends JpaRepository<Beneficio, Long> {}

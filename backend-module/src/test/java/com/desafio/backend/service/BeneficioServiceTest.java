@@ -38,15 +38,6 @@ public class BeneficioServiceTest {
     }
 
     @Test
-    void findActive_returnsOnlyActive() {
-        var b = Beneficio.builder().id(2L).nome("Y").valor(BigDecimal.ONE).ativo(true).build();
-        when(repository.findByAtivoTrue()).thenReturn(List.of(b));
-        var res = service.findActive();
-        assertEquals(1, res.size());
-        assertTrue(res.get(0).getAtivo());
-    }
-
-    @Test
     void findById_returnsOptional() {
         var b = Beneficio.builder().id(3L).nome("Z").valor(BigDecimal.ZERO).ativo(false).build();
         when(repository.findById(3L)).thenReturn(Optional.of(b));

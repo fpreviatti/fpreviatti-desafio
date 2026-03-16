@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import com.desafio.backend.dto.BeneficioDto;
+import com.desafio.backend.exception.BusinessException;
+import com.desafio.backend.exception.CustomException;
+import com.desafio.backend.exception.InvalidRequestException;
+import com.desafio.backend.exception.ResourceNotFoundException;
 import com.desafio.backend.repository.BeneficioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,10 +31,6 @@ public class BeneficioService {
         return repository.findAll();
     }
 
-    public List<Beneficio> findActive() {
-        return repository.findByAtivoTrue();
-    }
-
     public Optional<Beneficio> findById(Long id) {
         return repository.findById(id);
     }
@@ -38,13 +39,30 @@ public class BeneficioService {
         return repository.save(b);
     }
 
+    public Beneficio update(Long id, BeneficioDto dto) {
+        Beneficio existente = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Benefício não encontrado"));
+        existente.setNome(dto.nome());
+        existente.setDescricao(dto.descricao());
+        existente.setValor(dto.valor());
+        return repository.save(existente);
+    }
+
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
 
     @Transactional
     public void transfer(Long fromId, Long toId, BigDecimal amount) {
-        ejbService.transfer(fromId, toId, amount);
-        repository.flush();
+        try {
+            ejbService.transfer(fromId, toId, amount);
+            repository.flush();
+        } catch (IllegalArgumentException e) {
+            throw new InvalidRequestException(e.getMessage());
+        } catch (IllegalStateException e) {
+            throw new BusinessException(e.getMessage());
+        } catch (Exception e) {
+            throw new CustomException(e.getMessage(), 500);
+        }
     }
 }
