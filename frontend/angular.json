@@ -25,6 +25,12 @@
         "serve": {
         "builder": "@angular-devkit/build-angular:dev-server",
         "options": { "buildTarget": "app:build" }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "passWithNoTests": true
+          }
         }
       }
     }
