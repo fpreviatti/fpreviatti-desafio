@@ -1,5 +1,6 @@
 package com.desafio.backend.service;
 
+import com.desafio.backend.exception.BusinessException;
 import com.desafio.backend.repository.BeneficioRepository;
 import com.desafio.ejb.entity.Beneficio;
 import com.desafio.ejb.service.BeneficioEjbService;
@@ -14,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -73,7 +76,8 @@ public class BeneficioServiceTest {
     void transfer_propagatesException_andDoesNotFlush() {
         doThrow(new IllegalStateException("Saldo insuficiente"))
             .when(ejbService).transfer(anyLong(), anyLong(), any());
-        assertThrows(IllegalStateException.class, () -> service.transfer(1L, 2L, BigDecimal.ONE));
+        var ex = assertThrows(BusinessException.class, () -> service.transfer(1L, 2L, BigDecimal.ONE));
+        assertEquals("Saldo insuficiente", ex.getMessage());
         verify(repository, never()).flush();
     }
 }

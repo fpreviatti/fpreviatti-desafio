@@ -78,24 +78,4 @@ public class CustomExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-//        // Cria um map com campo -> mensagem de erro
-//        Map<String, String> errors = ex.getBindingResult().getFieldErrors()
-//                .stream()
-//                .collect(Collectors.toMap(
-//                        FieldError::getField,
-//                        FieldError::getDefaultMessage,
-//                        (existing, replacement) -> existing // em caso de conflito, mantém o primeiro
-//                ));
-//
-//        Map<String, Object> body = Map.of(
-//                "timestamp", OffsetDateTime.now().toString(),
-//                "status", 400,
-//                "errors", errors,
-//                "message", "Campos inválidos ou ausentes"
-//        );
-//
-//        return ResponseEntity.badRequest().body(body);
-//    }
 }
