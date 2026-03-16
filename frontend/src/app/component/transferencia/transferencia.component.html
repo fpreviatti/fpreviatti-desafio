@@ -1,0 +1,58 @@
+<div class="transferencia-container">
+  <h2>Realizar Transferência</h2>
+
+  <form [formGroup]="transferenciaForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Origem</mat-label>
+      <mat-select formControlName="beneficioOrigemId">
+        <mat-option *ngFor="let b of beneficiosParaOrigem" [value]="b.id">
+          {{ b.nome }} ({{ b.valor | real }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Destinatário</mat-label>
+      <mat-select formControlName="beneficioDestinoId">
+        <mat-option *ngFor="let b of beneficiosParaDestinatario" [value]="b.id">
+          {{ b.nome }} ({{ b.valor | real }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Valor</mat-label>
+        <input matInput
+         type="text"
+         formControlName="valor"
+         currencyMask
+         [options]="currencyOptions"
+         placeholder="R$ 0,00">
+
+      <mat-error *ngIf="transferenciaForm.get('valor')?.hasError('max')">
+        Valor máximo permitido: R$ 999.999.999.999,99
+      </mat-error>
+
+      <mat-error *ngIf="transferenciaForm.get('valor')?.hasError('required')">
+        O valor é obrigatório
+      </mat-error>
+
+      <mat-error *ngIf="transferenciaForm.get('valor')?.hasError('min')">
+        O valor deve ser maior que R$ 0,00
+      </mat-error>
+    </mat-form-field>
+
+    <div class="buttons-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="transferenciaForm.invalid">
+        Enviar Transferência
+      </button>
+
+      <button mat-raised-button color="accent" type="button" (click)="gerenciarBeneficios()">
+        Gerenciar Benefícios
+      </button>
+
+    </div>
+
+  </form>
+</div>

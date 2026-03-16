@@ -1,0 +1,69 @@
+<div class="beneficio-container">
+  <h2>Gerenciar Benefícios</h2>
+
+  <div class="beneficio-lista">
+    <mat-card *ngFor="let b of beneficios" class="beneficio-card">
+    <div class="beneficio-content">
+        <div class="beneficio-info">
+        <strong>{{ b.nome }}</strong>
+        <span class="descricao">{{ b.descricao }}</span>
+        <span class="valor">{{ b.valor | real }}</span>
+        </div>
+
+        <div class="beneficio-actions">
+
+        <button mat-icon-button (click)="atualizar(b)">
+            <mat-icon style="color: #fbc02d;">update</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="remover(b.id)">
+            <mat-icon style="color: #f44336;">delete</mat-icon>
+        </button>
+        </div>
+
+    </div>
+    </mat-card>
+  </div>
+
+  <div class="beneficio-adicao">
+    <h3>Adicionar Novo Benefício</h3>
+    <form [formGroup]="beneficioForm" (ngSubmit)="adicionar()" class="beneficio-form">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Nome do benefício">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Descrição</mat-label>
+        <input matInput formControlName="descricao" placeholder="Descrição do benefício">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Valor</mat-label>
+        <input matInput
+       type="text"
+       formControlName="valor"
+       currencyMask
+       [options]="currencyOptions"
+       placeholder="R$ 0,00"
+       (blur)="beneficioForm.get('valor')?.markAsTouched()">
+
+        <mat-error *ngIf="beneficioForm.get('valor')?.hasError('max')">
+            Valor máximo permitido: R$ 999.999.999.999,99
+        </mat-error>
+
+        <mat-error *ngIf="beneficioForm.get('valor')?.hasError('required')">
+            O valor é obrigatório
+        </mat-error>
+
+        <mat-error *ngIf="beneficioForm.get('valor')?.hasError('min')">
+            O valor deve ser maior que R$ 0,00
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="beneficioForm.invalid">
+        Adicionar Benefício
+      </button>
+    </form>
+  </div>
+</div>

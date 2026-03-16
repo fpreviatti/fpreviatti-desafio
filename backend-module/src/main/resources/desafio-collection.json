@@ -1,0 +1,135 @@
+{
+  "info": {
+    "_postman_id": "c1a658c8-2c12-44e2-bfcb-399f53c55669",
+    "name": "Beneficio Transfer Collection",
+    "description": "Testes para /api/v1/beneficios/transfer e operações CRUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12328179"
+  },
+  "item": [
+    {
+      "name": "Transfer - Success",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "fromId", "value": "1", "type": "text" },
+            { "key": "toId", "value": "2", "type": "text" },
+            { "key": "amount", "value": "2000", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/beneficios/transfer",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api","v1","beneficios","transfer"]
+        }
+      },
+      "response": [{ "name": "200 OK", "status": "OK", "code": 200, "body": "Transferência realizada" }]
+    },
+    {
+      "name": "Transfer - Failure (insufficient funds)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "fromId", "value": "1", "type": "text" },
+            { "key": "toId", "value": "2", "type": "text" },
+            { "key": "amount", "value": "1000000000", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/beneficios/transfer",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api","v1","beneficios","transfer"]
+        }
+      },
+      "response": [
+        { "name": "500 Error (example)", "status": "Internal Server Error", "code": 500, "body": "{\"error\":\"Saldo insuficiente\"}" }
+      ]
+    },
+    {
+      "name": "Get Beneficios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/beneficios",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api","v1","beneficios"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Beneficio",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Vale Transporte\",\n  \"descricao\": \"Transporte mensal\",\n  \"valor\": 150.0\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/beneficios",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api","v1","beneficios"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Beneficio",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 1,\n  \"nome\": \"Vale Alimentação\",\n  \"descricao\": \"Atualizado\",\n  \"valor\": 250.0\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/beneficios/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api","v1","beneficios","1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Beneficio",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/beneficios/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api","v1","beneficios","1"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

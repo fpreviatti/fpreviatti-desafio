@@ -3,16 +3,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root' // serviço global
+  providedIn: 'root'
 })
 export class TransferenciaService {
 
-  // URL base do backend local
   private baseUrl = 'http://localhost:8080/api/v1/beneficios';
 
   constructor(private http: HttpClient) {}
 
-  // Método para chamar a API de transferência
   transfer(fromId: number, toId: number, amount: number): Observable<string> {
     const params = new HttpParams()
       .set('fromId', fromId)
@@ -23,6 +21,15 @@ export class TransferenciaService {
   }
 
   getBeneficios(): Observable<Beneficio[]> {
-    return this.http.get<Beneficio[]>(`${this.baseUrl}`); // GET /api/v1/beneficios
+    return this.http.get<Beneficio[]>(`${this.baseUrl}`);
 }
+
+  addBeneficio(beneficio: Beneficio): Observable<Beneficio> {
+    return this.http.post<Beneficio>(`${this.baseUrl}`, beneficio);
+  }
+
+  deleteBeneficio(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
 }

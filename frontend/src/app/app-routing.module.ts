@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TransferenciaComponentComponent } from './component/transferencia-component/transferencia-component.component';
 
-const routes: Routes = [
-  { path: 'transferencia', component: TransferenciaComponentComponent },
-  { path: '', redirectTo: 'transferencia', pathMatch: 'full' }, // rota padrão
-  { path: '**', redirectTo: 'transferencia' } // rota fallback
+import { TransferenciaComponent } from './component/transferencia/transferencia.component';
+import { BeneficioComponent } from './component/beneficio/beneficio.component';
+
+export const routes: Routes = [
+  { path: 'transferencia', component: TransferenciaComponent },
+  { path: 'beneficio', component: BeneficioComponent },
+  { path: '', redirectTo: 'transferencia', pathMatch: 'full' },
+  { path: '**', redirectTo: 'transferencia', pathMatch: 'full' }
 ];
 
 @NgModule({

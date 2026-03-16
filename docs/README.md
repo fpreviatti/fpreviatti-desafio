@@ -1,43 +1,171 @@
-# 🏗️ Desafio Fullstack Integrado
-🚨 Instrução Importante (LEIA ANTES DE COMEÇAR)
-❌ NÃO faça fork deste repositório.
+# Desafio Fullstack
 
-Este repositório é fornecido como modelo/base. Para realizar o desafio, você deve:
-✅ Opção correta (obrigatória)
-  Clique em “Use this template” (se este repositório estiver marcado como Template)
-OU
-  Clone este repositório e crie um NOVO repositório público em sua conta GitHub.
-📌 O resultado deve ser um repositório próprio, independente deste.
+## 📌 Resumo
+Projeto de desafio **fullstack** com backend **Spring Boot**, **EJB** para regras transacionais e frontend **Angular moderno (standalone components)**.  
 
-## 🎯 Objetivo
-Criar solução completa em camadas (DB, EJB, Backend, Frontend), corrigindo bug em EJB e entregando aplicação funcional.
+Implementa:
+- CRUD de benefícios
+- Transferência de valores entre benefícios
+- Validações e testes automatizados
 
-## 📦 Estrutura
-- db/: scripts schema e seed
-- ejb-module/: serviço EJB com bug a ser corrigido
-- backend-module/: backend Spring Boot
-- frontend/: app Angular
-- docs/: instruções e critérios
-- .github/workflows/: CI
+---
 
-## ✅ Tarefas do candidato
-1. Executar db/schema.sql e db/seed.sql
-2. Corrigir bug no BeneficioEjbService
-3. Implementar backend CRUD + integração com EJB
-4. Desenvolver frontend Angular consumindo backend
-5. Implementar testes
-6. Documentar (Swagger, README)
-7. Submeter via fork + PR
+# 📦 Módulos
 
-## 🐞 Bug no EJB
-- Transferência não verifica saldo, não usa locking, pode gerar inconsistência
-- Espera-se correção com validações, rollback, locking/optimistic locking
+- `ejb-module`
+- `backend-module`
+- `frontend`
 
-## 📊 Critérios de avaliação
-- Arquitetura em camadas (20%)
-- Correção EJB (20%)
-- CRUD + Transferência (15%)
-- Qualidade de código (10%)
-- Testes (15%)
-- Documentação (10%)
-- Frontend (10%)
+---
+
+# ⭐ Destaques
+
+### Backend
+- **Spring Boot**
+- **Spring MVC**
+- **Spring Data JPA**
+- Endpoints **REST** para gerenciamento de benefícios
+
+### EJB
+- Lógica transacional de transferência
+- Validação de saldo
+- Controle de locking e rollback
+
+### Frontend
+- **Angular 19**
+- Componentes **standalone**
+- Testes com **Jest + jest-preset-angular**
+
+### Testes
+- **JUnit + Mockito** para backend
+- **Jest + HttpClientTestingModule** para frontend
+
+### Documentação
+- **OpenAPI / Swagger** disponível no backend acessível via http://localhost:8080/swagger-ui/index.html#/
+
+---
+
+# ⚙️ Pré-requisitos
+
+- **JDK:** 17 ou superior
+- **Node.js / npm:** Node 18+ recomendado
+- **Maven:** 3.8+
+- **Postman** — collection disponível no módulo backend-module em resources
+
+---
+
+# 🚀 Como rodar (desenvolvimento)
+
+### Banco de dados H2
+- Acessivel via http://localhost:8080/h2-console
+
+## Frontend
+
+- cd frontend
+- npm install
+- npm start
+
+Para acessar o sistema digitar a URL http://localhost:4200 no navegador
+
+## Backend
+
+- mvn clean install
+- Executar o módulo backend-module
+
+# 🧠 Decisões Técnicas
+
+## Arquitetura
+
+O projeto utiliza o padrão **Spring MVC** para organização das camadas da aplicação:
+
+- **Controller** → exposição de endpoints REST
+- **Service** → orquestração das regras de negócio
+- **Repository** → acesso a dados com Spring Data JPA
+- **EJB Module** → responsável por regras transacionais críticas
+
+O módulo **EJB** é utilizado para centralizar regras de negócio que exigem **controle transacional robusto**, como a operação de transferência entre benefícios.
+
+---
+
+## Transações
+
+A operação de **transferência de valores entre benefícios** é implementada no módulo **EJB**, garantindo:
+
+- validação de saldo
+- consistência de dados
+- rollback automático em caso de erro
+- controle de concorrência durante a operação
+
+---
+
+## Tratamento de erros
+
+A aplicação utiliza **exceptions customizadas** e handlers para melhorar a clareza das regras de negócio e o retorno de erros da API.
+
+Exemplos de Exception:
+
+- `CustomException`
+- `BusinessException`
+- `InvalidRequestException`
+- `ResourceNotFoundException`
+
+Handler utilizado: CustomExceptionHandler
+
+- `CustomExceptionHandler`
+
+
+Isso garante:
+
+- respostas HTTP padronizadas
+- mensagens de erro claras
+- desacoplamento entre controller e tratamento de exceções
+
+---
+
+## Testes
+
+### Backend
+
+O backend possui dois tipos de testes:
+
+**Testes unitários**
+- JUnit
+- Mockito
+
+**Testes de integração**
+- Spring Boot Test
+- MockMvc para simular requisições HTTP aos endpoints REST
+
+Isso permite validar:
+
+- comportamento dos serviços
+- respostas dos controllers
+- integração entre camadas
+
+---
+
+### Frontend
+
+O frontend Angular utiliza:
+
+- **Jest**
+- **jest-preset-angular**
+- **HttpClientTestingModule**
+
+Os testes verificam:
+
+- componentes
+- pipes
+- integração com serviços HTTP
+
+---
+
+## Angular moderno
+
+O frontend foi implementado utilizando **Standalone Components**, recurso introduzido nas versões mais recentes do Angular.
+
+Benefícios:
+
+- redução de boilerplate
+- eliminação de módulos desnecessários
+- estrutura mais simples e moderna
