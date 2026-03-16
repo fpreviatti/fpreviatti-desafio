@@ -61,12 +61,8 @@ public class BeneficioController {
             @Valid
             @RequestBody BeneficioDto beneficioDto) {
 
-        System.out.println("Atualizando benefício ID: " + id);
-
         Beneficio existente = beneficioService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Benefício não encontrado"));
-
-        System.out.println("Atualizando benefício ID: " + id);
 
         existente.setNome(beneficioDto.nome());
         existente.setDescricao(beneficioDto.descricao());

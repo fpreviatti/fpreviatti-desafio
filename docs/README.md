@@ -15,7 +15,6 @@ Implementa:
 - `ejb-module`
 - `backend-module`
 - `frontend`
-- `db`
 
 ---
 
